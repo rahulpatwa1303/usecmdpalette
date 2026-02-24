@@ -1,6 +1,6 @@
 {
   "name": "use-command-palette",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Headless React hook for command palettes. Zero dependencies, no UI, no Provider required.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -17,7 +17,10 @@
       "require": "./dist/testing.js"
     }
   },
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "peerDependencies": {
     "react": ">=16.8.0"
   },
