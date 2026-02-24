@@ -13,6 +13,7 @@ import { Footer } from './Footer'
 export type PaletteCommand = CommandItem & {
   icon: string
   description?: string
+  
 }
 
 const commands: PaletteCommand[] = [
