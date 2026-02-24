@@ -1,0 +1,55 @@
+# Netlify configuration
+# When deploying directly via Netlify's UI (without GitHub Actions),
+# this file controls the build command and publish directory.
+# GitHub Actions deploys run scripts/build-deploy.sh directly.
+
+[build]
+  command   = "bash scripts/build-deploy.sh"
+  publish   = "combined-dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback routes — each demo is a client-side app with no server routing,
+# so unknown paths inside a demo should fall back to its own index.html.
+
+[[redirects]]
+  from   = "/demo/*"
+  to     = "/demo/index.html"
+  status = 200
+
+[[redirects]]
+  from   = "/demo-css/*"
+  to     = "/demo-css/index.html"
+  status = 200
+
+[[redirects]]
+  from   = "/demo-tailwind/*"
+  to     = "/demo-tailwind/index.html"
+  status = 200
+
+[[redirects]]
+  from   = "/demo-mui/*"
+  to     = "/demo-mui/index.html"
+  status = 200
+
+# Landing page SPA fallback (must come last)
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    Permissions-Policy     = "camera=(), microphone=(), geolocation=()"
+
+# Long-term cache for hashed assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
